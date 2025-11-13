@@ -86,7 +86,7 @@ Once the agent provides the requirements content:
 
 1. **Create timestamped spec directory:**
    ```bash
-   FEATURE_DIR=$(python3 -c "from datetime import datetime; from pathlib import Path; import sys; name = sys.argv[1]; timestamp = datetime.now().strftime('%Y-%m-%d'); dir_name = f'{timestamp}-{name}'; Path(f'.molcajete/prd/specs/{dir_name}').mkdir(parents=True, exist_ok=True); print(dir_name)" "{feature-name}")
+   FEATURE_DIR=$(python3 -c "from datetime import datetime; from pathlib import Path; import sys; name = sys.argv[1].replace('-', '_'); timestamp = datetime.now().strftime('%Y%m%d'); dir_name = f'{timestamp}-{name}'; Path(f'.molcajete/prd/specs/{dir_name}').mkdir(parents=True, exist_ok=True); print(dir_name)" "{feature-name}")
    ```
 
 2. **Write requirements.md file:**

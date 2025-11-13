@@ -2,7 +2,7 @@
 description: Orchestrate task implementation with specialized stack-specific subagents
 ---
 
-**Note:** The {spec-name} should be the timestamped directory name (e.g., `2025-11-12-feature-name`) created by previous commands.
+**Note:** The {spec-name} should be the timestamped directory name (e.g., `20251112-feature_name`) created by previous commands.
 
 IMPORTANT: Immediately use the Task tool with subagent_type="prd:orchestrator" to delegate ALL work to the orchestrator agent. Do NOT do any analysis or work in the main context.
 

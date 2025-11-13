@@ -2,7 +2,7 @@
 description: Break specification into actionable, prioritized tasks organized by features
 ---
 
-**Note:** The {spec-name} should be the timestamped directory name (e.g., `2025-11-12-feature-name`) created by previous commands.
+**Note:** The {spec-name} should be the timestamped directory name (e.g., `20251112-feature_name`) created by previous commands.
 
 IMPORTANT: Immediately use the Task tool with subagent_type="prd:task-planner" to delegate ALL work to the task-planner agent. Do NOT do any analysis or work in the main context.
 

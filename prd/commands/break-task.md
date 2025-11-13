@@ -2,7 +2,7 @@
 description: Break a complex task into smaller, manageable sub-tasks
 ---
 
-**Note:** The {spec-name} should be the timestamped directory name (e.g., `2025-11-12-feature-name`) created by previous commands.
+**Note:** The {spec-name} should be the timestamped directory name (e.g., `20251112-feature_name`) created by previous commands.
 
 ## When to Use This Command
 
