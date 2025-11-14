@@ -29,6 +29,33 @@ interface PluginMetadata {
 }
 
 /**
+ * Validate plugin ID format
+ * Ensures IDs follow namespace/name pattern with strict character rules
+ * @throws Error if format is invalid
+ */
+function validatePluginId(pluginId: string): void {
+  const pattern = /^[a-z0-9-]+\/[a-z0-9-]+$/;
+  if (!pattern.test(pluginId)) {
+    throw new Error(
+      `Invalid plugin ID format: "${pluginId}". Expected format: namespace/name (lowercase, alphanumeric, and hyphens only)`
+    );
+  }
+}
+
+/**
+ * Validate plugin version string
+ * Ensures version is non-empty string
+ * @throws Error if version is invalid
+ */
+function validatePluginVersion(version: any, pluginId: string): void {
+  if (typeof version !== 'string' || version.trim().length === 0) {
+    throw new Error(
+      `Invalid version for plugin "${pluginId}": Version must be a non-empty string`
+    );
+  }
+}
+
+/**
  * Get the path to Claude settings file
  */
 function getSettingsPath(): string {
@@ -77,6 +104,7 @@ async function readSettings(): Promise<SettingsObject | null> {
  * Merge selected plugins into existing settings
  * Preserves all non-plugin settings
  * Avoids duplicates
+ * Validates plugin structure and handles edge cases
  */
 function mergePlugins(
   existing: SettingsObject | null,
@@ -85,13 +113,29 @@ function mergePlugins(
   // Start with existing settings or empty object
   const merged: SettingsObject = existing ? { ...existing } : {};
 
+  // Handle edge case: existing plugins property is not an object
+  if (merged.plugins !== undefined &&
+      (typeof merged.plugins !== 'object' ||
+       merged.plugins === null ||
+       Array.isArray(merged.plugins))) {
+    console.warn('Warning: Existing "plugins" property is not an object. Replacing with empty object.');
+    merged.plugins = {};
+  }
+
   // Ensure plugins object exists
   if (!merged.plugins) {
     merged.plugins = {};
   }
 
-  // Add/update selected plugins
+  // Add/update selected plugins with validation
   for (const plugin of selectedPlugins) {
+    // Validate plugin ID format
+    validatePluginId(plugin.id);
+
+    // Validate version
+    validatePluginVersion(plugin.version, plugin.id);
+
+    // Add to merged settings
     merged.plugins[plugin.id] = plugin.version;
   }
 
@@ -148,17 +192,37 @@ async function writeSettings(settings: SettingsObject): Promise<void> {
 
 /**
  * Main setup function - orchestrates the entire flow
+ * Validates all inputs and handles errors gracefully
  */
 async function setupPlugins(selectedPluginIds: string[]): Promise<{success: boolean; message: string}> {
   try {
+    // Validate inputs
+    if (!Array.isArray(selectedPluginIds)) {
+      throw new Error('selectedPluginIds must be an array');
+    }
+
+    if (selectedPluginIds.length === 0) {
+      return {
+        success: false,
+        message: 'No plugins selected. Please select at least one plugin.'
+      };
+    }
+
     // Read existing settings
     const existing = await readSettings();
 
-    // Convert selected IDs to plugin metadata
-    const selectedPlugins: PluginMetadata[] = selectedPluginIds.map(id => ({
-      id: `molcajete/${id}`,
-      version: 'latest'
-    }));
+    // Convert selected IDs to plugin metadata with validation
+    const selectedPlugins: PluginMetadata[] = [];
+    for (const id of selectedPluginIds) {
+      // Validate each plugin ID before creating metadata
+      const pluginId = `molcajete/${id}`;
+      validatePluginId(pluginId);
+
+      selectedPlugins.push({
+        id: pluginId,
+        version: 'latest'
+      });
+    }
 
     // Merge with existing
     const merged = mergePlugins(existing, selectedPlugins);
@@ -184,7 +248,9 @@ export {
   writeSettings,
   mergePlugins,
   setupPlugins,
-  getSettingsPath
+  getSettingsPath,
+  validatePluginId,
+  validatePluginVersion
 };
 ```
 
@@ -196,6 +262,10 @@ The utilities handle common error scenarios:
 - **EACCES** (permission denied): Provides helpful chmod command
 - **SyntaxError** (invalid JSON): Reports parsing error with message
 - **Directory creation**: Automatically creates ~/.claude directory if missing
+- **Invalid plugin ID format**: Validates namespace/name pattern with clear error message
+- **Invalid version string**: Ensures version is non-empty string
+- **Malformed plugins property**: Handles non-object plugins property gracefully
+- **Empty selection**: Returns helpful message when no plugins selected
 
 ## Atomic Writes
 

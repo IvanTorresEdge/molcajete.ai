@@ -491,9 +491,37 @@ const configPath = path.join(os.homedir(), '.claude', 'settings.local.json');
 
 **Progress:** 14/26 story points (54% complete)
 
+### Phase 3: Core Logic - COMPLETE (2025-11-14)
+
+**What Was Built:**
+- Enhanced `molcajete/skills/setup-utils.md` with validation and edge case handling
+
+**Implementation Decisions:**
+
+1. **Verified existing merge logic**: The existing mergePlugins() function already satisfied all requirements for Task 3.1 - no changes needed
+2. **Regex-based plugin ID validation**: Used pattern `/^[a-z0-9-]+\/[a-z0-9-]+$/` to enforce namespace/name format with strict character restrictions
+3. **Type-safe edge case handling**: Added runtime type checks for plugins property to prevent crashes with malformed data
+4. **Fail-fast validation**: Plugin IDs validated immediately in setupPlugins() before merge operations
+
+**Key Enhancements:**
+- `validatePluginId()`: New function enforcing namespace/name format with clear error messages
+- `validatePluginVersion()`: New function validating version strings
+- Enhanced `mergePlugins()`: Now validates plugins property is an object, handles edge cases gracefully
+- Enhanced `setupPlugins()`: Added input validation and pre-validation of plugin IDs
+- Type guards: Added runtime checks to prevent TypeScript type assumptions from causing issues
+
+**Edge Cases Handled:**
+- Non-object plugins property (null, array, string, etc.)
+- Invalid plugin ID formats (missing namespace, wrong characters, etc.)
+- Empty or malformed version strings
+- Empty plugin selection
+- Non-array input to setupPlugins()
+
+**Progress:** 20/26 story points (77% complete)
+
 ### Next Steps
 
-Phase 3 will enhance the TypeScript skill with JSON merge logic and validation.
+Phase 4 will add comprehensive error handling and user feedback polish.
 
 ## Implementation Summary (Final - To be added after completion)
 

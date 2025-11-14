@@ -85,24 +85,27 @@ Users should be able to interactively select which Molcajete plugins to install 
   - Acceptance: Reads current settings and shows already-configured plugins in selection UI
   - Implementation: Added logic to read existing settings, extract current plugins, display to user, and differentiate in success message
 
-## 3. [ ] Settings merging and validation in TypeScript skill
+## 3. [x] Settings merging and validation in TypeScript skill
 
 Users should have their existing settings preserved while new plugin configurations are safely merged.
 
-- 3.1 [ ] Implement JSON merge logic in skill
+- 3.1 [x] Implement JSON merge logic in skill (Completed: 2025-11-14)
   - Complexity: 3 points
   - Dependencies: 1.3
   - Acceptance: TypeScript skill preserves all non-plugin settings, avoids duplicates
+  - Implementation: Existing mergePlugins() function verified complete; no changes needed
 
-- 3.2 [ ] Add plugin configuration format validation
+- 3.2 [x] Add plugin configuration format validation (Completed: 2025-11-14)
   - Complexity: 1 point
   - Dependencies: 3.1
   - Acceptance: Ensures plugin IDs follow namespace/name format
+  - Implementation: Added validatePluginId() function with regex pattern matching
 
-- 3.3 [ ] Handle edge cases in existing settings
+- 3.3 [x] Handle edge cases in existing settings (Completed: 2025-11-14)
   - Complexity: 2 points
   - Dependencies: 3.1
   - Acceptance: Handles missing plugins key, creates if needed, handles malformed structure
+  - Implementation: Enhanced mergePlugins() with type checking, validation for non-object plugins property
 
 ## 4. [ ] Error handling and user feedback
 
@@ -232,25 +235,21 @@ The critical path is approximately 22 story points, suggesting 3-4 days of focus
 
 ## Progress Tracking
 
-**Overall Progress:** 54% (14/26 story points completed)
+**Overall Progress:** 77% (20/26 story points completed)
 
 **Phase Status:**
 - Phase 1 (Foundation): **COMPLETE** (9/9 points) ✓
 - Phase 2 (Interactive Selection): **COMPLETE** (5/5 points) ✓
-- Phase 3 (Core Logic): Not started (0/6 points)
+- Phase 3 (Core Logic): **COMPLETE** (6/6 points) ✓
 - Phase 4 (Polish): Not started (0/3 points)
 - Phase 5 (Documentation): Not started (0/4 points)
 
 **Completed (2025-11-14):**
-- 1.1 ✓ Create molcajete/commands/setup.md
-- 1.2 ✓ Create molcajete/skills/setup-utils.md
-- 1.3 ✓ Implement settings file reader
-- 1.4 ✓ Implement atomic settings writer
-- 2.1 ✓ Define plugin metadata in command file
-- 2.2 ✓ Implement AskUserQuestion for plugin selection
-- 2.3 ✓ Read existing plugins and pre-populate selection
+- 1.1 - 1.4: Foundation tasks ✓
+- 2.1 - 2.3: Interactive selection tasks ✓
+- 3.1 - 3.3: Settings merging and validation tasks ✓
 
 **Next Actions:**
-1. Task 3.1 - Implement JSON merge logic in skill
-2. Task 3.2 - Add plugin configuration format validation
-3. Task 3.3 - Handle edge cases in existing settings
+1. Task 4.1 - Implement comprehensive error messages
+2. Task 4.2 - Add success confirmation with details
+3. Task 4.3 - Handle user cancellation gracefully
