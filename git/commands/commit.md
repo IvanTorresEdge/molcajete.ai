@@ -33,6 +33,9 @@ Use this exact prompt for the agent:
    - CRITICAL: Never mention AI, Claude, or tools in the message
 
 4. **Present Message and Get Confirmation**
+
+   CRITICAL: You MUST use the AskUserQuestion tool. Do NOT output questions as plain text. Do NOT ask "Would you like to proceed?" in your response. You MUST invoke the AskUserQuestion tool.
+
    - Use AskUserQuestion tool with the message embedded in the question:
      - Question: \"Commit with this message?\n\n[Insert the complete formatted commit message here with title and bullet points]\"
      - Header: \"Commit\"
@@ -43,6 +46,8 @@ Use this exact prompt for the agent:
    - If user types in Other field (to suggest changes):
      - Update the commit message based on their feedback
      - Ask for confirmation again with updated message in the question (repeat until user selects Yes)
+
+   - If AskUserQuestion tool is unavailable or fails: STOP and report "Error: AskUserQuestion tool not available in this context. Cannot proceed with commit confirmation."
 
 5. **Execute Commit**
    - After user confirms, execute using heredoc format:
