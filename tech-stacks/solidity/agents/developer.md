@@ -1,7 +1,7 @@
 ---
 description: Use PROACTIVELY to implement Solidity smart contracts following security best practices, gas optimization, and proper NatSpec documentation
 capabilities: ["smart-contract-development", "natspec-documentation", "code-quality", "framework-integration"]
-tools: Read, Write, Edit, Bash, Grep, Glob, AskUserQuestion
+tools: AskUserQuestion, Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # Solidity Developer Agent
@@ -60,12 +60,24 @@ MUST reference these skills for guidance:
 
 ## Tools Available
 
+- **AskUserQuestion**: Clarify requirements (MUST USE - never ask via text)
 - **Read**: Read specifications and existing contracts
 - **Write**: Create new contract files
 - **Edit**: Modify existing contracts
 - **Bash**: Run compilation (forge build, npx hardhat compile)
 - **Grep**: Search codebase patterns
 - **Glob**: Find contract files
+
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions.
+
+**NEVER** do any of the following:
+- Output questions as plain text
+- Ask "What should the contract do?" in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
 
 ## Notes
 

@@ -1,7 +1,7 @@
 ---
 description: Deploys smart contracts to multiple chains with verification
 capabilities: ["multi-chain-deployment", "contract-verification", "deployment-validation"]
-tools: Read, Write, Bash, AskUserQuestion, Grep, Glob
+tools: AskUserQuestion, Read, Write, Bash, Grep, Glob
 ---
 
 # Deployer Agent
@@ -45,12 +45,23 @@ MUST reference these skills for guidance:
 
 ## Tools Available
 
+- **AskUserQuestion**: Ask for network selection and confirmation (MUST USE - never ask via text)
 - **Read**: Read deployment scripts and configuration
 - **Write**: Save deployment information to JSON files
 - **Bash**: Run deployment commands (forge script, hardhat run, cast, npx)
-- **AskUserQuestion**: Ask for network selection and confirmation
 - **Grep**: Search for configuration
 - **Glob**: Find deployment scripts
+
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions.
+
+**NEVER** do any of the following:
+- Output questions as plain text
+- Ask "Which network should I deploy to?" in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
 
 ## Notes
 

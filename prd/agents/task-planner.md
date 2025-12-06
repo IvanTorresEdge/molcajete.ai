@@ -1,7 +1,7 @@
 ---
 description: Project planner that breaks specifications into actionable, prioritized tasks organized by features
 capabilities: ["task-decomposition", "dependency-analysis", "estimation", "feature-organization"]
-tools: Read, Glob, AskUserQuestion
+tools: AskUserQuestion, Read, Glob
 model: opus
 ---
 
@@ -53,8 +53,19 @@ MUST reference these skills for guidance:
 
 ## Tools Available
 
+- **AskUserQuestion**: Get spec name if not provided (MUST USE - never ask via text)
 - **Read**: Read specification and product context files
-- **AskUserQuestion**: Get spec name if not provided
+
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions.
+
+**NEVER** do any of the following:
+- Output questions as plain text
+- Ask "Which spec should I use?" in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
 
 ## Formatting Requirements
 

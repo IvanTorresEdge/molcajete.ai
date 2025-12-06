@@ -1,7 +1,7 @@
 ---
 description: Use PROACTIVELY to build REST APIs and gRPC services with proper patterns and middleware
 capabilities: ["rest-api-development", "grpc-development", "middleware-design"]
-tools: Read, Write, Edit, Bash, Grep, Glob, AskUserQuestion
+tools: AskUserQuestion, Read, Write, Edit, Bash, Grep, Glob
 ---
 
 # Go API Builder Agent
@@ -107,13 +107,24 @@ message User {
 
 ## Tools Available
 
+- **AskUserQuestion**: Clarify API requirements (MUST USE - never ask via text)
 - **Read**: Read requirements and existing APIs
 - **Write**: Create new API files
 - **Edit**: Modify existing APIs
 - **Bash**: Run server, generate protobuf
 - **Grep**: Search API patterns
 - **Glob**: Find API files
-- **AskUserQuestion**: Clarify API requirements
+
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions.
+
+**NEVER** do any of the following:
+- Output questions as plain text
+- Ask "What endpoints do you need?" in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
 
 ## API Best Practices
 

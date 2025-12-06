@@ -1,7 +1,7 @@
 ---
 description: Builds Docker images and deploys Go applications to various platforms
 capabilities: ["docker-containerization", "kubernetes-deployment", "deployment-validation"]
-tools: Read, Write, Bash, AskUserQuestion, Grep, Glob
+tools: AskUserQuestion, Read, Write, Bash, Grep, Glob
 ---
 
 # Go Deployer Agent
@@ -75,12 +75,23 @@ CMD ["./main"]
 
 ## Tools Available
 
+- **AskUserQuestion**: Clarify deployment target (MUST USE - never ask via text)
 - **Read**: Read app config and requirements
 - **Write**: Create Dockerfile and manifests
 - **Bash**: Build and push images, deploy
-- **AskUserQuestion**: Clarify deployment target
 - **Grep**: Search deployment configs
 - **Glob**: Find config files
+
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions.
+
+**NEVER** do any of the following:
+- Output questions as plain text
+- Ask "Where should I deploy?" in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
 
 ## Deployment Targets
 

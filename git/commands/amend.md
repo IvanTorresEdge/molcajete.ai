@@ -55,6 +55,9 @@ Use this exact prompt for the agent:
    - CRITICAL: Never mention AI, Claude, or tools in the message
 
 4. **Present Message and Get Confirmation**
+
+   CRITICAL: You MUST use the AskUserQuestion tool. Do NOT output questions as plain text. Do NOT ask "Would you like to proceed?" in your response. You MUST invoke the AskUserQuestion tool.
+
    - Use AskUserQuestion tool with both messages embedded in the question:
      - Question: \"Amend the last commit with this message?\n\nCurrent:\n[current commit message]\n\nNew:\n[new commit message with additions]\"
      - Header: \"Amend\"
@@ -65,6 +68,8 @@ Use this exact prompt for the agent:
    - If user types in Other field (to suggest changes):
      - Update the commit message based on their feedback
      - Ask for confirmation again with updated messages in the question (repeat until user selects Yes)
+
+   - If AskUserQuestion tool is unavailable or fails: STOP and report "Error: AskUserQuestion tool not available in this context. Cannot proceed with amend confirmation."
 
 5. **Execute Amend**
    - After user confirms, execute using heredoc format:

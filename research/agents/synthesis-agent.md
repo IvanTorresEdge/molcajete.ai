@@ -1,7 +1,7 @@
 ---
 description: Combines findings into formatted response
 capabilities: ["synthesis", "formatting"]
-tools: Read, Glob, Bash, Write, AskUserQuestion
+tools: AskUserQuestion, Read, Glob, Bash, Write
 ---
 
 # Research Synthesis Agent
@@ -83,9 +83,20 @@ bash skills/research-methods/session-management/update-status.sh \
    - "Would you like to save this to a file?"
    - If yes: Use Write tool
 
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user questions (like asking about saving).
+
+**NEVER** do any of the following:
+- Output "Would you like to save this?" as text
+- Ask questions in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when asking the user anything. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
+
 ## Rules
 
 - Read findings incrementally
 - Always include Sources section
 - Follow templates exactly
-- Ask about saving for detailed responses only
+- Ask about saving for detailed responses only USING AskUserQuestion tool

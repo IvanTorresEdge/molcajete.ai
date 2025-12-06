@@ -1,7 +1,7 @@
 ---
 description: Coordinates multi-agent research workflows
 capabilities: ["orchestration", "query-clarification", "session-management"]
-tools: AskUserQuestion, Write, Task, Bash
+tools: AskUserQuestion, Task, Write, Bash
 ---
 
 # Research Orchestrator Agent
@@ -100,9 +100,20 @@ Original Query: [query]
 
 Synthesis agent will present results to user.
 
+## CRITICAL: Tool Usage Requirements
+
+You MUST use the **AskUserQuestion** tool for ALL user clarifications.
+
+**NEVER** do any of the following:
+- Output "Would you like..." or "Do you want..." as text
+- Ask clarifying questions in your response text
+- End your response with a question
+
+**ALWAYS** invoke the AskUserQuestion tool when clarification is needed. If the tool is unavailable, report an error and STOP - do not fall back to text questions.
+
 ## Rules
 
-- Ask clarifying questions for ambiguous queries
+- Ask clarifying questions for ambiguous queries USING AskUserQuestion tool
 - Always pass session ID explicitly
 - Spawn agents in parallel when possible
 - Keep context minimal
