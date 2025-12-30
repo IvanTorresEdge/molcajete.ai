@@ -1,6 +1,6 @@
 {
   "name": "react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React 19 and Next.js 15 development with Vite, TailwindCSS, component testing, and deployment patterns",
   "author": {
     "name": "Ivan Torres",
@@ -27,14 +27,16 @@
     "./commands/build-nextjs.md",
     "./commands/deploy-vercel.md",
     "./commands/deploy-netlify.md",
-    "./commands/deploy-cloudflare.md"
+    "./commands/deploy-cloudflare.md",
+    "./commands/refactor-atomic-design.md"
   ],
   "agents": [
     "./agents/component-builder.md",
     "./agents/state-architect.md",
     "./agents/ui-designer.md",
     "./agents/performance-optimizer.md",
-    "./agents/e2e-tester.md"
+    "./agents/e2e-tester.md",
+    "./agents/code-analyzer.md"
   ],
   "skills": [
     "./skills/react-19-patterns/SKILL.md",

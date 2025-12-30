@@ -1,6 +1,6 @@
 {
   "name": "react-native",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "React Native with Expo SDK 52+, NativeWind, Gluestack-ui, and EAS Build/Update for mobile development",
   "author": {
     "name": "Ivan Torres",
@@ -27,14 +27,16 @@
     "./commands/build-all.md",
     "./commands/deploy-eas.md",
     "./commands/analyze.md",
-    "./commands/update-ota.md"
+    "./commands/update-ota.md",
+    "./commands/refactor-atomic-design.md"
   ],
   "agents": [
     "./agents/component-builder.md",
     "./agents/ui-designer.md",
     "./agents/navigation-architect.md",
     "./agents/performance-optimizer.md",
-    "./agents/e2e-tester.md"
+    "./agents/e2e-tester.md",
+    "./agents/code-analyzer.md"
   ],
   "skills": [
     "./skills/nativewind-patterns/SKILL.md",

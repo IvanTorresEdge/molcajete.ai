@@ -1,6 +1,6 @@
 {
   "name": "react",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "extends": "js/common",
   "description": "React 19 frontend development with Vite and Next.js",
   "author": {
@@ -27,7 +27,8 @@
     {"name": "build-nextjs", "description": "Build Next.js app"},
     {"name": "deploy-vercel", "description": "Deploy to Vercel"},
     {"name": "deploy-netlify", "description": "Deploy to Netlify"},
-    {"name": "deploy-cloudflare", "description": "Deploy to Cloudflare Pages"}
+    {"name": "deploy-cloudflare", "description": "Deploy to Cloudflare Pages"},
+    {"name": "refactor-atomic-design", "description": "Refactor existing project to Atomic Design structure"}
   ],
   "agents": [
     {
@@ -54,6 +55,11 @@
       "name": "e2e-tester",
       "description": "Playwright E2E testing",
       "capabilities": ["playwright-testing", "visual-testing", "accessibility-testing", "e2e-patterns"]
+    },
+    {
+      "name": "code-analyzer",
+      "description": "Component structure analysis for Atomic Design refactoring",
+      "capabilities": ["component-scanning", "import-analysis", "atomic-classification", "refactoring-plans"]
     }
   ],
   "skills": [
