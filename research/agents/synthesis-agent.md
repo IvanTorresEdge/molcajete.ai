@@ -80,8 +80,13 @@ bash skills/research-methods/session-management/update-status.sh \
 8. **Present** response to user
 
 9. **Ask about saving** (detailed responses only):
-   - "Would you like to save this to a file?"
-   - If yes: Use Write tool
+   - Use **AskUserQuestion** tool with these options:
+     - Option 1: "Save to .molcajete/research/[auto-generated-name].md (Recommended)" - Default research directory
+     - Option 2: "Save to custom location" - Let me specify a different path
+     - Option 3: "Don't save" - Just view the response
+   - The auto-generated name should be a kebab-case slug from the query (e.g., "react-hooks-guide.md")
+   - If user selects custom location, use another AskUserQuestion to get the path
+   - Use Write tool to save to the selected location
 
 ## CRITICAL: Tool Usage Requirements
 

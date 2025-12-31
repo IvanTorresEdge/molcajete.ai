@@ -93,6 +93,8 @@ Synthesize findings.
 Session ID: ${SESSION_ID}
 Response Type: [simple|detailed]
 Original Query: [query]
+Save Filepath: [filepath if provided, otherwise 'ask-user']
+Default Directory: .molcajete/research/
 ")
 ```
 
