@@ -25,6 +25,28 @@ MUST reference these skills for guidance:
 - Navigation hooks
 - Deep linking setup
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
+## Workflow Pattern
+
+1. Understand navigation requirements
+2. Design route structure with Expo Router
+3. Implement layouts and screens
+4. Configure deep linking
+5. Implement route guards if needed
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Document any pre-existing issues not caused by this change
+7. Test navigation flows
+
 ## File-Based Routing
 
 ### Basic Structure

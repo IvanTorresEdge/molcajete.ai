@@ -25,6 +25,28 @@ MUST reference these skills for guidance:
 - Flow composition
 - CI integration
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
+## Workflow Pattern
+
+1. Identify critical user flows
+2. Design test structure
+3. Write Maestro YAML test flows
+4. Add platform-specific tests if needed
+5. Run locally on iOS/Android simulators
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `maestro test` for affected E2E tests
+   f. Document any pre-existing issues not caused by this change
+7. Configure CI integration
+
 ## Maestro Basics
 
 ### Installation

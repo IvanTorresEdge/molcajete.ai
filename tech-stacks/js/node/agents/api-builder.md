@@ -43,6 +43,12 @@ MUST reference these skills for guidance:
 - Response serialization
 - Type inference from schemas
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## API Design Principles
 
 - **Type Safety First:** Every endpoint fully typed
@@ -57,7 +63,15 @@ MUST reference these skills for guidance:
 3. Implement routes with type-safe handlers
 4. Add middleware (auth, validation, logging)
 5. Write integration tests
-6. Run validation: `npm run type-check && npm run lint && npm test`
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check lock files: pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Verify ZERO errors and ZERO warnings
+   g. Document any pre-existing issues not caused by this change
+7. Report completion status with verification results
 
 ## Fastify Example
 

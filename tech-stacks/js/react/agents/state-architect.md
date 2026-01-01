@@ -38,6 +38,12 @@ MUST reference these skills for guidance:
 - Async atoms
 - Provider-less usage
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## State Management Decision Tree
 
 ```
@@ -62,6 +68,15 @@ Is it server data (API responses)?
 6. Add optimizations (selectors, memoization)
 7. Write tests
 8. Document usage patterns
+9. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check lock files: pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Verify ZERO errors and ZERO warnings
+   g. Document any pre-existing issues not caused by this change
+10. Report completion status with verification results
 
 ## State Patterns
 

@@ -30,6 +30,13 @@ MUST reference these skills for guidance:
 - README structure
 - API documentation patterns
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, build, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+- Note: Only use when generating code examples, not for documentation-only changes
+
 ## Workflow Pattern
 
 1. Review undocumented code
@@ -39,6 +46,15 @@ MUST reference these skills for guidance:
 5. Generate godoc site: `godoc -http=:6060`
 6. Create/update README
 7. Add code examples
+8. **Post-Change Verification** (CONDITIONAL - only when code examples are generated):
+   If code files were created or modified:
+   a. Run `make fmt` to format code
+   b. Run `make lint` to lint code (ZERO warnings required)
+   c. Run `make build` to verify compilation
+   d. Run `make test` to verify examples work
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+9. Report completion status (include verification results if code was modified)
 
 ## godoc Conventions
 

@@ -25,6 +25,13 @@ Reference general TypeScript documentation best practices:
 - API documentation generation
 - Changelog formatting (Keep a Changelog)
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+- Note: Only apply when generating code examples, not documentation-only changes
+
 ## Documentation Principles
 
 - **Accurate** - Documentation matches implementation
@@ -40,7 +47,16 @@ Reference general TypeScript documentation best practices:
 4. Generate or update README
 5. Update CHANGELOG if applicable
 6. Run documentation generation tools
-7. Verify generated documentation
+7. **Post-Change Verification** (CONDITIONAL - only when code files modified):
+   a. If code examples were generated/updated:
+      - Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+      - Run `<pkg> run format` to format code
+      - Run `<pkg> run lint` to lint code (ZERO warnings required)
+      - Run `<pkg> run type-check` for type verification (ZERO errors required)
+      - Run `<pkg> test` for affected tests
+      - Document any pre-existing issues not caused by this change
+   b. If documentation-only changes, skip verification
+8. Verify generated documentation
 
 ## TSDoc Comment Syntax
 

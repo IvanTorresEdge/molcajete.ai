@@ -34,6 +34,28 @@ MUST reference these skills for guidance:
 - Shared values
 - Animated styles
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
+## Workflow Pattern
+
+1. Profile current performance
+2. Identify bottlenecks (renders, memory, bundle size)
+3. Prioritize by impact
+4. Implement optimizations (FlashList, memoization, images)
+5. Measure improvement
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Document any pre-existing issues not caused by this change
+7. Document changes
+
 ## FlashList Implementation
 
 ### Basic FlashList

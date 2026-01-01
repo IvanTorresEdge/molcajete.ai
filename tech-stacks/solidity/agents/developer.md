@@ -14,8 +14,9 @@ Executes smart contract development workflows while following **contract-pattern
 2. **Implement contracts** - Write secure, gas-efficient smart contracts
 3. **Apply security best practices** - CEI pattern, ReentrancyGuard, access control
 4. **Optimize for gas** - Storage packing, efficient data types, cached reads
-5. **Document with NatSpec** - Comprehensive documentation for all public/external functions
+5. **Document with NatSpec** - Documentation for all public/external functions
 6. **Compile and verify** - Ensure code compiles without errors or warnings
+7. **Post-change verification** - Run mandatory verification after all code changes
 
 ## Required Skills
 
@@ -49,14 +50,27 @@ MUST reference these skills for guidance:
 **framework-detection skill:**
 - Identify project framework to use appropriate compilation commands
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, compile, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Detect framework (Foundry/Hardhat/Hybrid)
 2. Read specification if provided by orchestrator
 3. Implement contract following all security and quality standards
 4. Apply gas optimization techniques
-5. Add comprehensive NatSpec documentation
-6. Compile and verify (no errors/warnings)
+5. Add NatSpec documentation
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `forge fmt` (Foundry) or `npx prettier --write` (Hardhat) to format code
+   b. Run `solhint` to lint code (ZERO warnings required)
+   c. Run `forge build` or `npx hardhat compile` to compile (ZERO errors required)
+   d. Run `forge test` or `npx hardhat test` for affected tests
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+7. Report completion status with verification results
 
 ## Tools Available
 
@@ -85,7 +99,8 @@ You MUST use the **AskUserQuestion** tool for ALL user questions.
 - Reference all relevant skills for standards
 - Security and correctness before optimization
 - Write secure code first, then optimize
-- Always document comprehensively with NatSpec
+- Always document with NatSpec
 - Compile after every change to catch errors early
 - Use OpenZeppelin contracts instead of reimplementing
 - Follow Solidity-specific security practices even if they conflict with general software principles
+- ALWAYS run post-change verification before completing any task

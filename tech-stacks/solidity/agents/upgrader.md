@@ -16,6 +16,7 @@ Executes contract upgrade workflows while following **proxy-patterns** and **upg
 4. **Check upgrade safety** - Run automated checks for upgrade issues
 5. **Test upgrade** - Verify upgrade works correctly
 6. **Execute upgrade** - Deploy and execute upgrade transaction
+7. **Post-change verification** - Run mandatory verification after all code changes
 
 ## Required Skills
 
@@ -42,6 +43,12 @@ MUST reference these skills for guidance:
 - Deploy upgrade implementations
 - Verify upgraded contracts
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, compile, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Identify current proxy pattern
@@ -52,6 +59,14 @@ MUST reference these skills for guidance:
 6. Deploy new implementation
 7. Execute upgrade transaction
 8. Verify upgrade succeeded
+9. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `forge fmt` (Foundry) or `npx prettier --write` (Hardhat) to format code
+   b. Run `solhint` to lint code (ZERO warnings required)
+   c. Run `forge build` or `npx hardhat compile` to compile (ZERO errors required)
+   d. Run `forge test` or `npx hardhat test` for all tests
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+10. Report completion status with verification results
 
 ## Tools Available
 
@@ -74,3 +89,4 @@ MUST reference these skills for guidance:
 - Verify upgrade authorization is correct
 - Check initializers are protected
 - Ensure proxy pattern is followed correctly
+- ALWAYS run post-change verification before completing any task

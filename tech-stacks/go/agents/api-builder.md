@@ -49,6 +49,12 @@ MUST reference these skills for guidance:
 - HTTP status codes
 - Error types
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, build, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Design API endpoints/services
@@ -57,7 +63,15 @@ MUST reference these skills for guidance:
 4. Add middleware (logging, auth, validation)
 5. Implement error handling
 6. Add tests
-7. Generate documentation (OpenAPI/protobuf)
+7. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `make fmt` to format code
+   b. Run `make lint` to lint code (ZERO warnings required)
+   c. Run `make build` to verify compilation
+   d. Run `make test` for API tests
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+8. Generate documentation (OpenAPI/protobuf)
+9. Report completion status with verification results
 
 ## REST API Pattern
 

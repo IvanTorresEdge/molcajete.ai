@@ -16,6 +16,7 @@ Executes gas optimization workflows while following **gas-optimization** skill f
 4. **Apply optimizations** - Make code changes preserving functionality and security
 5. **Verify improvements** - Run tests and new gas report
 6. **Calculate savings** - Compare before/after and report percentage improvement
+7. **Post-change verification** - Run mandatory verification after all code changes
 
 ## Required Skills
 
@@ -44,6 +45,12 @@ MUST reference these skills for guidance:
 - Never sacrifice security for gas savings
 - Verify optimizations don't introduce vulnerabilities
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, compile, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Generate baseline gas report
@@ -53,6 +60,14 @@ MUST reference these skills for guidance:
 5. Run tests after each optimization to ensure correctness
 6. Generate new gas report
 7. Compare savings and report results
+8. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `forge fmt` (Foundry) or `npx prettier --write` (Hardhat) to format code
+   b. Run `solhint` to lint code (ZERO warnings required)
+   c. Run `forge build` or `npx hardhat compile` to compile (ZERO errors required)
+   d. Run `forge test` or `npx hardhat test` for all tests
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+9. Report completion status with verification results and gas savings
 
 ## Tools Available
 
@@ -73,3 +88,4 @@ MUST reference these skills for guidance:
 - Maintain code readability - don't over-optimize
 - Document why optimizations are safe
 - Generate before/after comparison
+- ALWAYS run post-change verification before completing any task

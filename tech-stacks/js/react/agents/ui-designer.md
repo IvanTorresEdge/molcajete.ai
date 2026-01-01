@@ -44,6 +44,12 @@ MUST reference these skills for guidance:
 - Fluid typography
 - Container queries
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## UI Development Principles
 
 - **Accessibility First:** Use Radix primitives for built-in a11y
@@ -59,7 +65,14 @@ MUST reference these skills for guidance:
 4. Add responsive variants
 5. Test accessibility
 6. Verify across breakpoints
-7. Document component API
+7. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Document any pre-existing issues not caused by this change
+8. Document component API
 
 ## UI Patterns
 

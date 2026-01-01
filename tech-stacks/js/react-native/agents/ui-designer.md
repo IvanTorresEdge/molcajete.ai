@@ -35,6 +35,28 @@ MUST reference these skills for guidance:
 - Touch target sizes
 - Color contrast
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
+## Workflow Pattern
+
+1. Understand design requirements
+2. Choose appropriate NativeWind patterns or Gluestack-ui components
+3. Apply mobile-first styling
+4. Add accessibility attributes
+5. Test on both iOS and Android
+6. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `<pkg> test` for affected tests
+   f. Document any pre-existing issues not caused by this change
+7. Document component API
+
 ## NativeWind Patterns
 
 ### Basic Styling

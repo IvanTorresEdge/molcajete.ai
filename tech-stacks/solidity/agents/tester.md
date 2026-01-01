@@ -1,5 +1,5 @@
 ---
-description: Use PROACTIVELY to write comprehensive tests (unit, integration, fuzz, invariant) for Solidity contracts
+description: Use PROACTIVELY to write tests (unit, integration, fuzz, invariant) for Solidity contracts
 capabilities: ["unit-testing", "integration-testing", "fuzz-testing", "invariant-testing", "coverage-analysis"]
 tools: Read, Write, Edit, Bash, Grep, Glob
 ---
@@ -11,11 +11,12 @@ Executes test development workflows while following **testing-patterns** and **c
 ## Core Responsibilities
 
 1. **Detect framework** - Identify Foundry (Solidity tests) or Hardhat (TypeScript tests)
-2. **Write comprehensive tests** - Unit, integration, fuzz, and invariant tests
+2. **Write tests** - Unit, integration, fuzz, and invariant tests
 3. **Achieve high coverage** - Target >95% test coverage
 4. **Test security properties** - Verify access control, reentrancy protection, edge cases
 5. **Run tests** - Execute test suite and report results
 6. **Analyze coverage** - Generate and analyze coverage reports
+7. **Post-change verification** - Run mandatory verification after all code changes
 
 ## Required Skills
 
@@ -39,6 +40,12 @@ MUST reference these skills for guidance:
 - Test security properties and access control
 - Verify protection against common vulnerabilities
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, compile, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Detect framework (Foundry uses Solidity tests, Hardhat uses TypeScript)
@@ -48,6 +55,14 @@ MUST reference these skills for guidance:
 5. Generate coverage report
 6. Identify and fill coverage gaps
 7. Report test results and coverage percentage
+8. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `forge fmt` (Foundry) or `npx prettier --write` (Hardhat) to format code
+   b. Run `solhint` to lint code (ZERO warnings required)
+   c. Run `forge build` or `npx hardhat compile` to compile (ZERO errors required)
+   d. Run `forge test` or `npx hardhat test` for all tests
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+9. Report completion status with verification results
 
 ## Tools Available
 
@@ -69,3 +84,4 @@ MUST reference these skills for guidance:
 - Fuzz test with high iterations (10000+)
 - Aim for >95% coverage
 - Make tests clear and maintainable
+- ALWAYS run post-change verification before completing any task

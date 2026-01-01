@@ -47,6 +47,12 @@ MUST reference these skills for guidance:
 - Effect cleanup
 - Memoization patterns
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Atomic Level Decision Logic
 
 Before creating any component, determine its atomic level:
@@ -210,8 +216,15 @@ Use the atomic level as the first part of the title:
 7. **Generate Storybook story** (if Atom, Molecule, or Organism)
 8. Create unit tests
 9. **Update barrel export** at the atomic level (e.g., `atoms/index.ts`)
-10. Run type-check and lint
-11. Verify tests pass
+10. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+    a. Detect package manager (check lock files: pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+    b. Run `<pkg> run format` to format code
+    c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+    d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+    e. Run `<pkg> test` for affected tests
+    f. Verify ZERO errors and ZERO warnings
+    g. Document any pre-existing issues not caused by this change
+11. Report completion status with verification results
 
 ## Component Patterns
 

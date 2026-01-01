@@ -51,6 +51,12 @@ MUST reference these skills for guidance:
 - Profile before optimizing
 - Benchmark to validate
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, build, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Run profiling (CPU, memory, or goroutines)
@@ -61,6 +67,14 @@ MUST reference these skills for guidance:
 6. Re-run benchmarks
 7. Compare results using benchstat
 8. Document improvements
+9. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `make fmt` to format optimized code
+   b. Run `make lint` to lint code (ZERO warnings required)
+   c. Run `make build` to verify compilation
+   d. Run `make test` to verify optimizations don't break functionality
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+10. Report completion status with verification results
 
 ## Profiling Commands
 

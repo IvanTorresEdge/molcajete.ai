@@ -38,6 +38,12 @@ MUST reference these skills for guidance:
 - Automated a11y checks
 - Manual testing guidance
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, type-check, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## E2E Testing Principles
 
 - **Test User Flows:** Focus on critical user journeys
@@ -53,7 +59,14 @@ MUST reference these skills for guidance:
 4. Add visual regression checks
 5. Add accessibility checks
 6. Run locally and fix flaky tests
-7. Configure CI integration
+7. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Detect package manager (check for pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+   b. Run `<pkg> run format` to format code
+   c. Run `<pkg> run lint` to lint code (ZERO warnings required)
+   d. Run `<pkg> run type-check` for type verification (ZERO errors required)
+   e. Run `npx playwright test` to run E2E tests
+   f. Document any pre-existing issues not caused by this change
+8. Configure CI integration
 
 ## Test Patterns
 

@@ -41,6 +41,7 @@ We build what we need, when we need it, to the quality standard we demand.
 - **Go plugin** - Expand testing patterns; add observability and deployment guidance
 - **Solidity plugin** - Improve security analysis; add gas optimization patterns
 - **Git plugin** - Smarter commit message generation; support for release workflows
+- **Code Quality Enforcement** [COMPLETE - 100%] - Post-Change Verification Protocol establishing standardized quality enforcement across all code-modifying agents. Creates stack-specific skills ensuring consistent format/lint/type-check/test verification after every code change. All 5 phases complete: JS Common (Phase 1), Node/React/React Native (Phase 2), Go (Phase 3), Solidity (Phase 4), Verification and Documentation (Phase 5). All 35 agents audited, 26 code-modifying agents updated, 9 read-only agents correctly excluded. Completed 2026-01-01. See `.molcajete/prd/specs/20251231-code_quality_enforcement/spec.md`
 - **Defaults plugin** - Core software principles and patterns all plugins should follow
 
 **Success Criteria:** Existing plugins become more reliable and handle edge cases better.

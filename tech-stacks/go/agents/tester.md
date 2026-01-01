@@ -45,6 +45,12 @@ MUST reference these skills for guidance:
 - Avoiding compiler optimizations
 - Memory allocation analysis
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, build, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Workflow Pattern
 
 1. Analyze code to be tested
@@ -55,6 +61,14 @@ MUST reference these skills for guidance:
 6. Generate coverage: `make coverage`
 7. Analyze coverage and identify gaps
 8. Write benchmarks for performance-critical paths
+9. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `make fmt` to format test files
+   b. Run `make lint` to lint test code
+   c. Run `make build` to verify compilation
+   d. Run `make test` to verify all tests pass
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+10. Report completion status with verification results
 
 ## Test Organization
 

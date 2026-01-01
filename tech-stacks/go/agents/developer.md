@@ -18,6 +18,7 @@ Executes Go development workflows while following **code-quality**, **error-hand
 6. **Format code** - **ALWAYS run `go fmt` or `make fmt` after file changes**
 7. **Build with Makefile** - **ALWAYS use `make build`, NEVER `go build` directly**
 8. **Verify compilation** - Ensure binary is in `./bin/` directory
+9. **Run Post-Change Verification** - **MANDATORY after all code changes**
 
 ## Required Skills
 
@@ -50,6 +51,12 @@ MUST reference these skills for guidance:
 - Context for cancellation
 - errgroup for error handling in goroutines
 
+**post-change-verification skill:**
+- Mandatory verification protocol after code changes
+- Format, lint, build, test sequence
+- Zero tolerance for errors/warnings
+- Exception handling for pre-existing issues
+
 ## Development Principles
 
 - **YAGNI:** Only implement what's needed now, not what might be needed later
@@ -62,11 +69,15 @@ MUST reference these skills for guidance:
 1. Analyze project structure
 2. Understand current requirements (apply YAGNI - no future speculation)
 3. Implement simple, readable solution (apply KISS)
-4. Run `go fmt ./...` or `make fmt` to format code
-5. Use Makefile to build (e.g., `make build`)
-6. Verify binary is in `./bin/` directory
-7. Run tests with `make test`
-8. Document with godoc comments
+4. **Post-Change Verification** (MANDATORY - reference post-change-verification skill):
+   a. Run `make fmt` to format code
+   b. Run `make lint` to lint code (ZERO warnings required)
+   c. Run `make build` to verify compilation
+   d. Run `make test` for affected packages
+   e. Verify ZERO errors and ZERO warnings
+   f. Document any pre-existing issues not caused by this change
+5. Document with godoc comments
+6. Report completion status with verification results
 
 ## Build System Rules
 

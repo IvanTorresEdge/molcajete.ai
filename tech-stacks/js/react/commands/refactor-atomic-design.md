@@ -135,22 +135,31 @@ Present plan using AskUserQuestion with options:
 
 ### Phase 6: Verification
 
-1. Run type-check:
+Execute **post-change-verification skill** protocol:
+
+1. Detect package manager (check lock files: pnpm-lock.yaml, yarn.lock, package-lock.json, bun.lockb)
+
+2. Run format:
    ```bash
-   npm run type-check   # or tsc --noEmit
+   <pkg> run format
    ```
 
-2. Run lint:
+3. Run lint:
    ```bash
-   npm run lint
+   <pkg> run lint
    ```
 
-3. Run tests:
+4. Run type-check:
    ```bash
-   npm test
+   <pkg> run type-check   # or npx tsc --noEmit
    ```
 
-4. Display completion summary:
+5. Run tests:
+   ```bash
+   <pkg> test
+   ```
+
+6. Display completion summary with verification results:
    ```
    === REFACTORING COMPLETE ===
 
@@ -159,9 +168,16 @@ Present plan using AskUserQuestion with options:
    Stories created: 19
    Barrel exports updated: 5
 
-   Type-check: PASSED
-   Lint: PASSED (2 auto-fixed)
-   Tests: PASSED (24/24)
+   === POST-CHANGE VERIFICATION ===
+
+   Format:     PASSED
+   Lint:       PASSED (0 errors, 0 warnings)
+   Type-check: PASSED (0 errors)
+   Tests:      PASSED (24/24)
+
+   Pre-existing issues: NONE
+
+   === TASK COMPLETE ===
 
    Next steps:
    1. Run `npm run storybook` to verify stories
@@ -257,6 +273,7 @@ src/components/
 ## Skills Referenced
 
 - **atomic-design** - Classification criteria, Storybook templates, barrel export patterns
+- **post-change-verification** - Mandatory verification protocol after code changes (used in Phase 6)
 
 ## Notes
 

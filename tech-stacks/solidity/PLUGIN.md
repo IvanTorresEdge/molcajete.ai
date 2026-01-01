@@ -201,6 +201,103 @@ See individual command files in `commands/` for detailed usage.
 
 ---
 
+## Code Quality Tools
+
+### Formatter
+
+**Foundry (forge fmt):**
+```bash
+# Format all contracts
+forge fmt
+
+# Check formatting without changes
+forge fmt --check
+```
+
+**Prettier (for Hardhat or hybrid projects):**
+```bash
+# Install
+npm install --save-dev prettier prettier-plugin-solidity
+
+# Format
+npx prettier --write "contracts/**/*.sol"
+
+# Check
+npx prettier --check "contracts/**/*.sol"
+```
+
+### Linter
+
+**Solhint:**
+```bash
+# Install
+npm install --save-dev solhint
+
+# Initialize config
+npx solhint --init
+
+# Run linter
+solhint "contracts/**/*.sol"
+# or for Foundry projects
+solhint "src/**/*.sol"
+```
+
+**Recommended .solhint.json:**
+```json
+{
+  "extends": "solhint:recommended",
+  "rules": {
+    "compiler-version": ["error", "^0.8.0"],
+    "func-visibility": ["warn", {"ignoreConstructors": true}],
+    "not-rely-on-time": "warn",
+    "reason-string": ["warn", {"maxLength": 64}]
+  }
+}
+```
+
+### Quality Commands
+
+Add to package.json or Makefile:
+
+**Foundry (Makefile):**
+```makefile
+.PHONY: fmt lint check build test
+
+fmt:
+	forge fmt
+
+lint:
+	solhint "src/**/*.sol"
+
+check:
+	forge fmt --check
+	solhint "src/**/*.sol"
+	forge build
+	forge test
+
+build:
+	forge build
+
+test:
+	forge test
+```
+
+**Hardhat (package.json):**
+```json
+{
+  "scripts": {
+    "format": "prettier --write \"contracts/**/*.sol\"",
+    "format:check": "prettier --check \"contracts/**/*.sol\"",
+    "lint": "solhint \"contracts/**/*.sol\"",
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "validate": "npm run format:check && npm run lint && npm run compile && npm run test"
+  }
+}
+```
+
+---
+
 ## Integration Notes
 
 **For Product Orchestrator:**
