@@ -13,9 +13,8 @@ Combines findings from all agents into formatted response.
 1. **Extract session info** from prompt
 
 2. **Locate plugin directory**:
-```bash
-PLUGIN_DIR=$(find ~/.claude/plugins/cache -type d -path "*/res/*/skills" 2>/dev/null | head -1 | sed 's|/skills$||')
-```
+   - Use Glob: `**/res/*/skills/research-methods/session-management/get-plugin-dir.sh` in `~/.claude/plugins/cache`
+   - Run the found script: `PLUGIN_DIR=$(/path/to/get-plugin-dir.sh)`
 
 3. **List findings**:
 ```bash

@@ -22,16 +22,22 @@ If YES to all: Skip to session creation
 
 ### 2. Create Session
 
-First, locate the plugin directory:
-```bash
-PLUGIN_DIR=$(find ~/.claude/plugins/cache -type d -path "*/res/*/skills" 2>/dev/null | head -1 | sed 's|/skills$||')
+**Step 1:** Use Glob to find the plugin directory:
+```
+Glob(pattern="**/res/*/skills/research-methods/session-management/get-plugin-dir.sh", path="~/.claude/plugins/cache")
 ```
 
-Then create the session:
-```bash
-SESSION_ID=$(bash "${PLUGIN_DIR}/skills/research-methods/session-management/create-session.sh")
-SESSION_DIR=".molcajete/tmp/claude-code-researcher-${SESSION_ID}"
+**Step 2:** Run the script to get PLUGIN_DIR:
 ```
+Bash: PLUGIN_DIR=$(/path/from/glob/get-plugin-dir.sh)
+```
+
+**Step 3:** Create the session:
+```
+Bash: SESSION_ID=$("${PLUGIN_DIR}/skills/research-methods/session-management/create-session.sh")
+```
+
+Set `SESSION_DIR=".molcajete/tmp/claude-code-researcher-${SESSION_ID}"`
 
 **IMPORTANT:** Always use `${PLUGIN_DIR}` prefix when calling any script from `skills/research-methods/`.
 
