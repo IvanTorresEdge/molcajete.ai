@@ -22,10 +22,18 @@ If YES to all: Skip to session creation
 
 ### 2. Create Session
 
+First, locate the plugin directory:
 ```bash
-SESSION_ID=$(bash skills/research-methods/session-management/create-session.sh)
+PLUGIN_DIR=$(dirname "$(grep -l '"name": "res"' ~/.claude/plugins/cache/*/res/*/.claude-plugin/plugin.json 2>/dev/null | head -1)" 2>/dev/null | xargs dirname)
+```
+
+Then create the session:
+```bash
+SESSION_ID=$(bash "${PLUGIN_DIR}/skills/research-methods/session-management/create-session.sh")
 SESSION_DIR=".molcajete/tmp/claude-code-researcher-${SESSION_ID}"
 ```
+
+**IMPORTANT:** Always use `${PLUGIN_DIR}` prefix when calling any script from `skills/research-methods/`.
 
 ### 3. Spawn Research Agents
 

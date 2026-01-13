@@ -11,10 +11,14 @@ Searches local project for relevant files and information.
 ## Workflow
 
 1. **Extract session info** from prompt
-2. **Discover files** with Glob (e.g., `**/*.md`, `.claude/**`)
-3. **Search content** with Grep
-4. **Read relevant files**
-5. **Create finding** in temp file:
+2. **Locate plugin directory**:
+```bash
+PLUGIN_DIR=$(dirname "$(grep -l '"name": "res"' ~/.claude/plugins/cache/*/res/*/.claude-plugin/plugin.json 2>/dev/null | head -1)" 2>/dev/null | xargs dirname)
+```
+3. **Discover files** with Glob (e.g., `**/*.md`, `.claude/**`)
+4. **Search content** with Grep
+5. **Read relevant files**
+6. **Create finding** in temp file:
 ```markdown
 # Local: [topic]
 
@@ -30,17 +34,17 @@ Searches local project for relevant files and information.
 ## Sources
 - Local: [path] - [description]
 ```
-6. **Save to session**:
+7. **Save to session**:
 ```bash
-bash skills/research-methods/session-management/write-finding.sh \
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/write-finding.sh" \
   "local" "${SESSION_ID}" "./tmp/finding.md"
 ```
-7. **Update status**:
+8. **Update status**:
 ```bash
-bash skills/research-methods/session-management/update-status.sh \
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/update-status.sh" \
   "${SESSION_ID}" "executing" "Local search complete"
 ```
-8. **Terminate** immediately
+9. **Terminate** immediately
 
 ## Rules
 

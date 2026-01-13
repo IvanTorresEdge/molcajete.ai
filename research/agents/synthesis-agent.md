@@ -12,12 +12,17 @@ Combines findings from all agents into formatted response.
 
 1. **Extract session info** from prompt
 
-2. **List findings**:
+2. **Locate plugin directory**:
 ```bash
-bash skills/research-methods/session-management/read-findings.sh "${SESSION_ID}" "all"
+PLUGIN_DIR=$(dirname "$(grep -l '"name": "res"' ~/.claude/plugins/cache/*/res/*/.claude-plugin/plugin.json 2>/dev/null | head -1)" 2>/dev/null | xargs dirname)
 ```
 
-3. **Read each finding** from disk:
+3. **List findings**:
+```bash
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/read-findings.sh" "${SESSION_ID}" "all"
+```
+
+4. **Read each finding** from disk:
 ```bash
 for file in "${SESSION_DIR}/findings/web/"*.md; do
   cat "$file"
@@ -30,9 +35,9 @@ for file in "${SESSION_DIR}/findings/local/"*.md; do
 done
 ```
 
-4. **Synthesize** - group by topic, organize logically
+5. **Synthesize** - group by topic, organize logically
 
-5. **Format** using research-methods skill templates:
+6. **Format** using research-methods skill templates:
 
 **Simple Response:**
 ```markdown
@@ -64,22 +69,22 @@ done
 - [URL] - [desc]
 ```
 
-6. **Write to session**:
+7. **Write to session**:
 ```bash
 cat > "${SESSION_DIR}/output/final-response.md" <<'EOF'
 [response]
 EOF
 ```
 
-7. **Update status**:
+8. **Update status**:
 ```bash
-bash skills/research-methods/session-management/update-status.sh \
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/update-status.sh" \
   "${SESSION_ID}" "complete" "Done"
 ```
 
-8. **Present** response to user
+9. **Present** response to user
 
-9. **Ask about saving** (detailed responses only):
+10. **Ask about saving** (detailed responses only):
    - Use **AskUserQuestion** tool with these options:
      - Option 1: "Save to .molcajete/research/[auto-generated-name].md (Recommended)" - Default research directory
      - Option 2: "Save to custom location" - Let me specify a different path

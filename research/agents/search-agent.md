@@ -11,8 +11,12 @@ Executes targeted web searches and writes findings to session.
 ## Workflow
 
 1. **Extract session info** from prompt
-2. **Execute WebSearch** with optimized query
-3. **Create finding** in temp file:
+2. **Locate plugin directory**:
+```bash
+PLUGIN_DIR=$(dirname "$(grep -l '"name": "res"' ~/.claude/plugins/cache/*/res/*/.claude-plugin/plugin.json 2>/dev/null | head -1)" 2>/dev/null | xargs dirname)
+```
+3. **Execute WebSearch** with optimized query
+4. **Create finding** in temp file:
 ```markdown
 # Search: [query]
 
@@ -26,17 +30,17 @@ Executes targeted web searches and writes findings to session.
 ## Sources
 - [URL] - [description]
 ```
-4. **Save to session**:
+5. **Save to session**:
 ```bash
-bash skills/research-methods/session-management/write-finding.sh \
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/write-finding.sh" \
   "web" "${SESSION_ID}" "./tmp/finding.md"
 ```
-5. **Update status**:
+6. **Update status**:
 ```bash
-bash skills/research-methods/session-management/update-status.sh \
+bash "${PLUGIN_DIR}/skills/research-methods/session-management/update-status.sh" \
   "${SESSION_ID}" "executing" "Search complete"
 ```
-6. **Terminate** immediately
+7. **Terminate** immediately
 
 ## Rules
 
