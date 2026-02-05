@@ -64,6 +64,38 @@ MUST reference these skills for guidance:
 - **Readability:** Prioritize clear, maintainable code over clever solutions
 - **Formatting:** Always format code after changes
 
+## Modification vs Extension Policy
+
+**CRITICAL: Prefer modifying existing code over creating new wrappers.**
+
+When adding functionality to existing code:
+
+1. **Modify existing methods** when changes are backwards-compatible or internal
+2. **Add optional parameters** (with defaults) instead of creating `MethodWithX` variants
+3. **Only create new methods** when the use case is fundamentally different (not just +1 parameter)
+4. **Avoid wrapper proliferation** like `PlaceOrder`, `PlaceOrderWithTx`, `PlaceOrderWithContext`
+
+### When to Modify (Preferred)
+- Adding an optional parameter to an internal method
+- Extending behavior that doesn't break existing callers
+- Refactoring to support a new use case
+
+### When to Create New (Only When Necessary)
+- The new method has fundamentally different semantics
+- It's a published API where backwards compatibility is critical
+- You have 3+ distinct variants with genuinely different behaviors
+
+### Anti-Pattern Examples
+```go
+// BAD: Creating wrappers for minor additions
+func PlaceOrder(order Order) error
+func PlaceOrderWithTx(tx *sql.Tx, order Order) error      // Just add tx param!
+func PlaceOrderWithContext(ctx context.Context, order Order) error  // Just add ctx param!
+
+// GOOD: Single method with all needed parameters
+func PlaceOrder(ctx context.Context, tx *sql.Tx, order Order) error
+```
+
 ## Workflow Pattern
 
 1. Analyze project structure

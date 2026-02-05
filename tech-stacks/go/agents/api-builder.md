@@ -153,6 +153,36 @@ You MUST use the **AskUserQuestion** tool for ALL user questions.
 - Use context for cancellation
 - Implement graceful shutdown
 
+## Modification vs Extension Policy
+
+**CRITICAL: Prefer modifying existing handlers/services over creating new wrappers.**
+
+When adding functionality:
+
+1. **Modify existing methods** - Add parameters with defaults, don't create `HandlerWithX` variants
+2. **Consolidate similar handlers** - If handlers differ only by one parameter, merge them
+3. **Avoid interface bloat** - Don't add new interface methods for minor variations
+
+### Anti-Pattern to Avoid
+```go
+// BAD: Proliferating similar methods
+type OrderService interface {
+    PlaceOrder(order Order) error
+    PlaceOrderWithTx(tx *sql.Tx, order Order) error
+    PlaceOrderAsync(order Order) error
+}
+
+// GOOD: Single method with proper parameters
+type OrderService interface {
+    PlaceOrder(ctx context.Context, tx *sql.Tx, order Order) error
+}
+```
+
+### When Creating New Methods IS Appropriate
+- Fundamentally different operations (not just +1 parameter)
+- Public API versioning (v1 vs v2 endpoints)
+- Streaming vs non-streaming variants in gRPC
+
 ## Notes
 
 - Choose framework based on requirements

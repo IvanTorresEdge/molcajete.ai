@@ -519,6 +519,38 @@ const testService = new UserService(new MockDatabase());
 - **When needed**: LSP when using inheritance
 - **Judiciously**: ISP when interfaces grow large
 
+## When NOT to Apply OCP
+
+The Open/Closed Principle is often misapplied. It does NOT mean "never modify existing code."
+
+**OCP applies to:**
+- Published APIs with external consumers
+- Stable interfaces that multiple modules depend on
+- Plugin systems and extension points
+
+**OCP does NOT apply to:**
+- Internal implementation details
+- Methods that only have one or few callers
+- Code that's still evolving with requirements
+- Adding parameters to existing methods
+
+**Prefer modification over extension when:**
+- The change is backwards-compatible
+- You're adding an optional parameter with a default
+- The existing method is internal (not a published API)
+- Creating a wrapper would just duplicate logic
+
+**Anti-pattern to avoid:**
+```go
+// DON'T: Create wrappers just to avoid modifying
+func DoThing(x int) error
+func DoThingWithContext(ctx context.Context, x int) error  // Just modify DoThing!
+func DoThingWithOptions(x int, opts Options) error          // Just modify DoThing!
+
+// DO: Modify the original when appropriate
+func DoThing(ctx context.Context, x int, opts ...Option) error
+```
+
 ## Common Mistakes
 
 1. **Over-engineering** - Applying all principles everywhere

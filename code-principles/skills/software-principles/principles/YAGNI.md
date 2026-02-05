@@ -426,6 +426,11 @@ class Application {
 ### YAGNI vs SOLID
 - Don't design for extensibility you don't need
 - Apply SOLID when requirements show the need
+- **OCP Caveat**: "Closed for modification" doesn't mean never change code
+  - OCP is for stable, published APIs with external consumers
+  - Internal code should be modified freely as requirements evolve
+  - Don't create `MethodWithX` wrappers just to avoid editing existing code
+  - Modifying a method to add a parameter is simpler than creating a wrapper
 
 ### YAGNI vs Good Design
 - YAGNI doesn't mean write bad code
