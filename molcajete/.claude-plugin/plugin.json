@@ -1,0 +1,49 @@
+{
+  "name": "m",
+  "version": "2.1.6",
+  "description": "Core development workflow with generic agents and discoverable skills",
+  "author": {
+    "name": "Ivan Torres",
+    "email": "ivantorresedge@gmail.com"
+  },
+  "keywords": ["workflow", "development", "testing", "documentation", "git"],
+  "commands": [
+    "./commands/amend.md",
+    "./commands/commit.md",
+    "./commands/copy.md",
+    "./commands/debug.md",
+    "./commands/dev.md",
+    "./commands/doc.md",
+    "./commands/feature.md",
+    "./commands/fix.md",
+    "./commands/init.md",
+    "./commands/prompt.md",
+    "./commands/rebase.md",
+    "./commands/research.md",
+    "./commands/summary.md",
+    "./commands/review.md",
+    "./commands/spec.md",
+    "./commands/tasks.md",
+    "./commands/test.md"
+  ],
+  "skills": [
+    "./skills/code-documentation/SKILL.md",
+    "./skills/copywriting/SKILL.md",
+    "./skills/dev-workflow/SKILL.md",
+    "./skills/git-committing/SKILL.md",
+    "./skills/go-testing/SKILL.md",
+    "./skills/go-writing-code/SKILL.md",
+    "./skills/node-testing/SKILL.md",
+    "./skills/node-writing-code/SKILL.md",
+    "./skills/project-management/SKILL.md",
+    "./skills/prompting/SKILL.md",
+    "./skills/react-components/SKILL.md",
+    "./skills/react-testing/SKILL.md",
+    "./skills/react-writing-code/SKILL.md",
+    "./skills/research-methods/SKILL.md",
+    "./skills/software-principles/SKILL.md",
+    "./skills/tailwind-css/SKILL.md",
+    "./skills/typescript-testing/SKILL.md",
+    "./skills/typescript-writing-code/SKILL.md"
+  ]
+}

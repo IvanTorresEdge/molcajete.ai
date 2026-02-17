@@ -1,5 +1,57 @@
 {
   "permissions": {
-    "additionalDirectories": ["../molcajete.ai-mcp"]
-  }
+    "plansDirectory": "./plans",
+    "permissions": {
+      "allow": [
+        "Bash(docker compose:*)",
+        "Bash(git diff:*)",
+        "Bash(git log:*)",
+        "Bash(git commit -m:*)",
+        "Bash(git status:*)",
+        "Bash(go test:*)",
+        "Bash(ls:*)",
+        "Bash(make build:*)",
+        "Bash(make clean:*)",
+        "Bash(make fmt:*)",
+        "Bash(make generate-console:*)",
+        "Bash(make generate-doctor:*)",
+        "Bash(make generate-patient:*)",
+        "Bash(make generate:*)",
+        "Bash(git rebase:*)",
+        "Bash(golangci-lint:*)",
+        "Bash(make lint:*)",
+        "Bash(make migrate-create:*)",
+        "Bash(make migrate-status:*)",
+        "Bash(make test:*)",
+        "Bash(make tidy:*)",
+        "Bash(pnpm --filter:*)",
+        "Bash(pnpm add:*)",
+        "Bash(pnpm install:*)",
+        "Bash(pnpm run build:*)",
+        "Bash(pnpm run format:*)",
+        "Bash(pnpm run i18n:compile:*)",
+        "Bash(pnpm run i18n:extract:*)",
+        "Bash(pnpm run lint:*)",
+        "Bash(pnpm run lint:fix:*)",
+        "Bash(pnpm run storybook:*)",
+        "Bash(pnpm run test:*)",
+        "Bash(pnpm run type-check:*)",
+        "Bash(pnpm run validate:*)",
+        "Bash(tree:*)",
+        "Read",
+        "WebSearch"
+      ],
+      "ask": [
+        "Bash(git add:*)",
+        "Bash(git commit:*)",
+        "Bash(git reset:*)",
+        "Bash(git restore --staged:*)"
+      ],
+      "deny": ["Bash(git add:*)", "Bash(git commit -A:*)"]
+    }
+  },
+  "enabledPlugins": {
+    "m@Molcajete.ai": true
+  },
+  "outputStyle": "default"
 }

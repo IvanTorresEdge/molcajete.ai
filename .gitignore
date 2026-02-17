@@ -33,3 +33,11 @@ temp/
 # Environment variables
 .env
 .env.local
+
+# Molcajete
+plans/
+research/
+prd/
+
+# Other
+debt-list.md
