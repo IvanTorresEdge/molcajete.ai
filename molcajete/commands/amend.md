@@ -1,7 +1,7 @@
 ---
 description: Amend the last commit with staged changes
 model: claude-sonnet-4-5
-allowed-tools: Bash, Task, AskUserQuestion
+allowed-tools: Read, Bash(*), Task, AskUserQuestion
 argument-hint: <optional: reason for amend>
 ---
 

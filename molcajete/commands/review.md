@@ -1,7 +1,7 @@
 ---
 description: Code review on staged or recent changes
 model: claude-opus-4-6
-allowed-tools: Read, Glob, Grep, Bash, Task, AskUserQuestion
+allowed-tools: Read, Glob, Grep, Bash(*), Task, AskUserQuestion
 argument-hint: <"staged" or commit range like "HEAD~3..HEAD">
 ---
 

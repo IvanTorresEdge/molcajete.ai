@@ -1,7 +1,7 @@
 ---
 description: Quick web and local research with brief synthesis
 model: claude-sonnet-4-5
-allowed-tools: Read, Glob, Grep, WebSearch, WebFetch, Bash, AskUserQuestion, Task
+allowed-tools: Read, Glob, Grep, WebSearch, WebFetch, Bash(*), AskUserQuestion, Task
 argument-hint: <research query or URL>
 ---
 

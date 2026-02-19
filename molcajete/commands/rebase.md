@@ -1,7 +1,7 @@
 ---
 description: Interactive rebase helper
 model: claude-opus-4-6
-allowed-tools: Bash, Read, Task, AskUserQuestion
+allowed-tools: Read, Bash(*), Task, AskUserQuestion
 argument-hint: <base branch, e.g. "main" or "master">
 ---
 
