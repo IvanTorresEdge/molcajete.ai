@@ -1,6 +1,6 @@
 {
   "name": "m",
-  "version": "2.1.10",
+  "version": "2.2.0",
   "description": "Core development workflow with generic agents and discoverable skills",
   "author": {
     "name": "Ivan Torres",
@@ -20,9 +20,10 @@
     "./commands/prompt.md",
     "./commands/rebase.md",
     "./commands/research.md",
-    "./commands/summary.md",
     "./commands/review.md",
+    "./commands/summary.md",
     "./commands/spec.md",
+    "./commands/stories.md",
     "./commands/tasks.md",
     "./commands/test.md"
   ],
@@ -31,6 +32,7 @@
     "./skills/code-documentation/SKILL.md",
     "./skills/copywriting/SKILL.md",
     "./skills/dev-workflow/SKILL.md",
+    "./skills/gherkin/SKILL.md",
     "./skills/git-committing/SKILL.md",
     "./skills/go-testing/SKILL.md",
     "./skills/go-writing-code/SKILL.md",

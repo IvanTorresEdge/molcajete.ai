@@ -28,7 +28,7 @@
 
 | Feature | Requirements | Spec | Tasks | Status |
 |---------|-------------|------|-------|--------|
-| — | — | — | — | No specs scoped yet |
+| BDD Scenario Generator | [Req](./specs/20260223-1600-bdd_scenario_generator/requirements.md) | [Spec](./specs/20260223-1600-bdd_scenario_generator/spec.md) | [Tasks](./specs/20260223-1600-bdd_scenario_generator/tasks.md) | Tasks planned |
 
 ## Current Focus
 
