@@ -1,6 +1,6 @@
 ---
 description: Generate documentation for code
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 allowed-tools: Read, Write, Edit, Glob, Grep, Bash(*), Task, AskUserQuestion
 argument-hint: <file path, directory, or module name>
 ---

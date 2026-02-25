@@ -1,6 +1,6 @@
 ---
 description: Rewrite text or file content with clear structure and good copy
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 allowed-tools: Read, Bash(*), AskUserQuestion, Write
 argument-hint: <text, file path to rewrite>
 ---

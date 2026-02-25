@@ -1,6 +1,6 @@
 ---
 description: Write a well-structured LLM prompt from a rough description
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 allowed-tools: Read, Bash(*), AskUserQuestion, Write
 argument-hint: <what the prompt should do>
 ---

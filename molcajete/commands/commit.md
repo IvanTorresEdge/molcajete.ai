@@ -1,6 +1,6 @@
 ---
 description: Create a well-formatted commit from staged changes
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 allowed-tools: Read, Bash(*), Write, Task, AskUserQuestion
 argument-hint: <optional: issue number or context hint>
 ---

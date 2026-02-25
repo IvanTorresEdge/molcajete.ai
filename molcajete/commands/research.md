@@ -1,6 +1,6 @@
 ---
 description: Deep research with tech stack context, parallel agents, and long-form output
-model: claude-sonnet-4-5
+model: claude-sonnet-4-6
 allowed-tools: Read, Glob, Grep, Write, WebSearch, WebFetch, Bash(*), AskUserQuestion, Task
 argument-hint: <research query or URL>
 ---
